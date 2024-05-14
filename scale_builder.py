@@ -31,14 +31,21 @@ def split_values(note_name):
     
 def find_octave_interval_pitches(note_name, note_pitch, note_octave):
     note_letter, note_octave = split_values(note_name)
-    notes = {}
     note_pitch_in_0th_octave = note_pitch / pow(2, note_octave)
     
+    note_names = [note_name, "", "", "", "", "", "", "", "", ""]
     note_pitches = [note_pitch_in_0th_octave, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     
-    for i in range(0, 9):
+    notes = {note_letter + '0' : note_pitch_in_0th_octave}
+    
+    for i in range(1, 10):
+        note_names[i] = note_letter + str(i)
         note_pitches[i] = note_pitch_in_0th_octave * pow(2, i)
-        print(note_pitches[i])
+        notes.update({note_names[i] : note_pitches[i]})
+        
+    print(notes)
+
+    return notes
         
     
 find_octave_interval_pitches("A4", 440.0, 4)
