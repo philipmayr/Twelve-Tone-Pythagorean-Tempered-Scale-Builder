@@ -3,50 +3,48 @@ semitone_scale = {"A4": base_pitch, "E5": 1.0, "B5": 1.0, "F♯6": 1.0, "C♯7":
 
 A4 = semitone_scale.pop("A4")
 
-note_names = ["A4", "E5", "B5", "F♯6", "C♯7", "G♯7", "D♯8", "A♯9", "F10", "C11", "G11", "D12"]
-note_pitches = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+note_names = ["A4", "E5", "B5", "F♯6", "C♯7", "G♯7", "D♯8", "A♯8", "F9", "C10", "G10", "D11"]
+note_pitches = [base_pitch, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 note_octaves = [4, 5, 5, 6, 7, 7, 8, 9, 10, 11, 11, 12]
 
 notes = {}
 
-power = 0
+for i in range(0, 12):
+    note_pitches[i] = base_pitch * pow(3/2, i)
+    notes.update({note_names[i] : note_pitches[i]})
 
-for note_pitch in note_pitches:
-    note_pitch = base_pitch * pow(3/2, power)
-    notes.update({note_names[power] : note_pitch})
-    power += 1
-    print(note_pitch)
-    
-print()
-    
-for note_name, note_pitch in notes.items():
-    print(note_name + ' : ' + str(note_pitch))
+# for note_name, note_pitch in notes.items():
+#     print(note_name + ' : ' + str(note_pitch))
     
     
 def split_values(note_name):
     note_letter = ''.join(filter(lambda c: not c.isdigit(), note_name))
     note_octave = int(''.join(filter(lambda d: d.isdigit(), note_name)))
+    
     return note_letter, note_octave
     
     
 def find_octave_interval_pitches(note_name, note_pitch, note_octave):
     note_letter, note_octave = split_values(note_name)
-    note_pitch_in_0th_octave = note_pitch / pow(2, note_octave)
+    print(note_octave)
+    note_pitch_in_0th_octave = note_pitch / (pow(2, note_octave))
     
     note_names = [note_name, "", "", "", "", "", "", "", "", ""]
     note_pitches = [note_pitch_in_0th_octave, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     
     notes = {note_letter + '0' : note_pitch_in_0th_octave}
     
-    for i in range(1, 10):
+    for i in range(0, 10):
         note_names[i] = note_letter + str(i)
         note_pitches[i] = note_pitch_in_0th_octave * pow(2, i)
+        print(note_names[i] + ':' + str(note_pitches[i]))
         notes.update({note_names[i] : note_pitches[i]})
         
-    print(notes)
+    print()
 
     return notes
         
-    
-find_octave_interval_pitches("A4", 440.0, 4)
+
+for i in range(0, 12):
+    find_octave_interval_pitches(note_names[i], note_pitches[i], note_octaves[i])
     
