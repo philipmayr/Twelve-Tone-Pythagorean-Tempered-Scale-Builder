@@ -9,7 +9,7 @@ note_octaves = [4, 5, 5, 6, 7, 7, 8, 9, 10, 11, 11, 12]
 
 note_dict = {}
 
-for i in range(0, 12):
+for i in range(0, 10):
     note_pitches[i] = base_pitch * pow(3/2, i)
     note_dict.update({note_names[i] : note_pitches[i]})
 
@@ -42,12 +42,14 @@ def find_octave_interval_pitches(note_name, note_pitch, note_octave):
     return note_dict
         
 
-for i in range(0, 12):
+for i in range(0, 10):
     note_dict.update(find_octave_interval_pitches(note_names[i], note_pitches[i], note_octaves[i]))
     
 note_list = sorted(note_dict.items(), key=lambda x:x[1])
 note_dict = dict(note_list)
 
 for note, pitch in note_dict.items():
-    print(note + " : " + str(pitch))
-    
+    print(note, end='')
+    if len(note) == 2:
+        print(' ', end='')
+    print(" : " + str(pitch))
