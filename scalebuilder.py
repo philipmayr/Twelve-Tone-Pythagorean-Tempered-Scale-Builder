@@ -46,6 +46,8 @@ for i in range(0, 12):
     note_dict.update(find_octave_interval_pitches(note_names[i], note_pitches[i], note_octaves[i]))
     
 note_list = sorted(note_dict.items(), key=lambda x:x[1])
+note_list.pop()
+note_list.pop()
 note_dict = dict(note_list)
 
 for note, pitch in note_dict.items():
