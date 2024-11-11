@@ -10,7 +10,7 @@ note_octaves = [4, 5, 5, 6, 7, 7, 8, 9, 10, 11, 11, 12]
 note_dict = {}
 
 for i in range(0, 12):
-    note_pitches[i] = base_pitch * pow(3/2, i)
+    note_pitches[i] = base_pitch * pow(3 / 2, i)
     note_dict.update({note_names[i] : note_pitches[i]})
 
 # for note_name, note_pitch in notes.items():
