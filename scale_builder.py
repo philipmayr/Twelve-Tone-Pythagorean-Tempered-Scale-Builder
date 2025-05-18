@@ -9,7 +9,7 @@ def find_octave_interval_pitches(note_name, note_pitch, note_octave):
     note_letter, note_octave = split_values(note_name)
     note_pitch_in_0th_octave = note_pitch / (pow(2, note_octave))
     
-    note_names = [note_name, "", "", "", "", "", "", "", "", ""]
+    note_names = [note_name, '', '', '', '', '', '', '', '', '']
     note_pitches = [note_pitch_in_0th_octave, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     
     note_dict = {note_letter + '0' : note_pitch_in_0th_octave}
@@ -37,10 +37,10 @@ note_dict = {}
 for i in range(0, 12):
     note_pitches[i] = base_pitch * pow(3 / 2, i)
     note_dict.update({note_names[i] : note_pitches[i]})
-
+    
 # for note_name, note_pitch in notes.items():
 #     print(note_name + ' : ' + str(note_pitch))
-        
+
 for i in range(0, 12):
     note_dict.update(find_octave_interval_pitches(note_names[i], note_pitches[i], note_octaves[i]))
     
